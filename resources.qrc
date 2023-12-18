@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/pc_filter_slider" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
