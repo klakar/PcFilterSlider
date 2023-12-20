@@ -222,11 +222,11 @@ class pcFilterSlider:
     def reset(self):
         global attribute_min
         global attribute_max
-        self.dockwidget.lblStartValue.setText(str(attribute_min))
+        self.dockwidget.lblStartValue.setText(str(round(attribute_min,1)))
         self.dockwidget.lblMaxCutoffValue.setText(str(round(attribute_max,1)))
         self.dockwidget.lblMaxThicknessValue.setText(str(round(attribute_delta,2)))
         self.dockwidget.sliderThickness.setValue(99)
-        self.dockwidget.sliderCutoff.setValue(0)
+        self.dockwidget.sliderCutoff.setValue(0)        
         self.filter_pc()
         
 
@@ -268,14 +268,14 @@ class pcFilterSlider:
         attribute_min = pc_layer.statistics().minimum(attribute)
         attribute_max = pc_layer.statistics().maximum(attribute)
         attribute_delta = attribute_max - attribute_min
-        self.reset()
-        
+        self.reset()        
 
     def pc_cutoff_change(self, value):
         self.filter_pc()
 
     def filter_pc(self):
         global pc_layer
+        global attribute
         try:
             if not pc_layer.isValid():
                 print("No valid Point Cloud layer")
@@ -283,20 +283,15 @@ class pcFilterSlider:
         except:
             print("Check your project!")
             return
-        # Average point cloud value...
-        start_value = float(self.dockwidget.lblStartValue.text())
-        self.dockwidget.lblMaxCutoffValue.setText(str(round(start_value + attribute_delta,1)))
-        self.dockwidget.lblMaxThicknessValue.setText(str(round(attribute_delta,2)))
         
-        layer_name = self.dockwidget.cmbPointCloudLayer.currentText()
-        filter_attribute = self.dockwidget.cmbAttribute.currentText()
-        filter_min = round(start_value + self.dockwidget.sliderCutoff.value() * attribute_delta / 100,2)
+        layer_name = pc_layer.name()
+        filter_min = round(attribute_min + self.dockwidget.sliderCutoff.value() * attribute_delta / 100,2)
         self.dockwidget.lblCutoff.setText(str(filter_min))
         filter_max = round(filter_min + self.dockwidget.sliderThickness.value() * attribute_delta / 100,2)
         self.dockwidget.lblThickness.setText(str(round(self.dockwidget.sliderThickness.value() * attribute_delta / 100,2)))
-        filter_string = filter_attribute + " > " + str(filter_min)
+        filter_string = attribute + " > " + str(filter_min)
         filter_string += " AND "
-        filter_string += filter_attribute + " < " + str(filter_max)
+        filter_string += attribute + " < " + str(filter_max)
         pc_layer.setSubsetString(filter_string)
         self.dockwidget.chkActive.setChecked(True)
         
