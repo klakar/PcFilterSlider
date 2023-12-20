@@ -1,6 +1,8 @@
 # PcFilterSlider
 QGIS plugin to set and change simple filters for point cloud graphically.
 
+![pc_plugin_qgis](https://github.com/klakar/PcFilterSlider/assets/6375959/aeb928fb-f3d1-471c-a8f4-553dd650be8e)
+
 ## Usage
 Goto "Releases" and download the zip-file. In QGIS you open "Manage and install Plug-Ins" and select the "Install from ZIP" option.
 Approve install from unknown sources (if you trust the file you downloaded). Your plugin is then available in the Plugins menu.
