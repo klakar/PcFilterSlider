@@ -11,7 +11,7 @@ Before you activate the plugin you should load any pointcloud layer you want to 
 
 The plugin will pick one layer and the Z attribute. You can change layer and attribute if you want to filter something else.
 
-The sliders will be set to the layer and selected attribute min and max values.
+The sliders will be set to the layer and the selected attributes min and max values.
 
 The left slider will control the "span" of the filter, from the minimum cut-off value and up.
 
