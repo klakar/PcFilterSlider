@@ -6,7 +6,7 @@
 name=Point Cloud Filter Slider
 qgisMinimumVersion=3.0
 description=GUI panel to change values in simple query builder filter for point clouds.
-version=0.1
+version=1.0
 author=Klas Karlsson
 email=klas.karlsson@geosupportsystem.se
 
@@ -29,7 +29,7 @@ homepage=https://github.com/klakar/PcFilterSlider
 category=Plugins
 icon=icon.png
 # experimental flag
-experimental=True
+experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
